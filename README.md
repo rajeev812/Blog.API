@@ -1,24 +1,24 @@
-Blogging Application: .NET Core API and Angular UI
+**Blogging Application: .NET Core API and Angular UI**
 This project is a blog application built with the following technologies:
 
 Backend: ASP.NET Core (.NET 6 or later) for building a RESTful API
 Frontend: Angular for building a dynamic and user-friendly interface
 Getting Started
-Prerequisites:
+**Prerequisites:**
 
 .NET Core SDK: Download and install the latest version from https://dotnet.microsoft.com/en-us/download
 Node.js and npm: Download and install from https://nodejs.org/en/download
 1. Clone the repository:
 
-Bash
-git clone https://your-repository-url.git
+**Bash**
+git clone https:///Blog.API.git
 Use code with caution.
 2. Setup the Backend:
 
-Navigate to the backend directory
+**Navigate to the backend directory**
 Restore dependencies:
 Bash
-dotnet restore
+**dotnet restore**
 Use code with caution.
 Run migrations to create the database schema (if applicable):
 Bash
