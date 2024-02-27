@@ -1,4 +1,5 @@
-﻿using Practice.API.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using Practice.API.Data;
 using Practice.API.Models.Domain;
 using Practice.API.Repositories.Interface;
 
@@ -17,6 +18,27 @@ namespace Practice.API.Repositories.Implementation
             await dbContext.Categories.AddAsync(category);
             await dbContext.SaveChangesAsync();
             return category;
+        }
+
+        public async Task<IEnumerable<Category>> GetAllAsync()
+        {
+           return await dbContext.Categories.ToListAsync();
+        }
+        public async Task<Category?> GetAllAsyncById(Guid id)
+        {
+            return await dbContext.Categories.FirstOrDefaultAsync(x => x.Id == id);
+        }
+
+        public async Task<Category?> UpdateCategory(Category category)
+        {
+            var existingcategory= await dbContext.Categories.FirstOrDefaultAsync(x=>x.Id == category.Id);
+            if (existingcategory != null)
+            {
+                 dbContext.Entry(existingcategory).CurrentValues.SetValues(category);
+                await dbContext.SaveChangesAsync();
+                return category;
+            }
+            return null;
         }
     }
 }
