@@ -1,9 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Practice.API.Data;
+﻿using Microsoft.AspNetCore.Mvc;
 using Practice.API.Models.Domain;
 using Practice.API.Models.DTO;
-using Practice.API.Repositories.Implementation;
 using Practice.API.Repositories.Interface;
 
 namespace Practice.API.Controllers
@@ -92,6 +89,21 @@ namespace Practice.API.Controllers
             {
                 return NotFound();
             }
+            var response = new CategoryDTO
+            {
+                Id = category.Id,
+                Name = category.Name,
+                UrlHandle = category.UrlHandle
+            };
+            return Ok(response);
+        }
+        [HttpDelete]
+        [Route("{id:Guid}")]
+        public async Task<IActionResult> DeletedById([FromRoute] Guid id)
+        {
+            var category = await categoryRepository.DeleteCategoryById(id);
+            if (category is null)
+                return NotFound();
             var response = new CategoryDTO
             {
                 Id = category.Id,

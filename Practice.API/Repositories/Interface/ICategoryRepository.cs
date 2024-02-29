@@ -8,5 +8,6 @@ namespace Practice.API.Repositories.Interface
         Task<IEnumerable<Category>> GetAllAsync();
         Task<Category?> GetAllAsyncById(Guid id);
         Task<Category?> UpdateCategory(Category category);
+        Task<Category?> DeleteCategoryById(Guid id);
     }
 }

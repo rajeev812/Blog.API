@@ -20,6 +20,18 @@ namespace Practice.API.Repositories.Implementation
             return category;
         }
 
+        public async Task<Category?> DeleteCategoryById(Guid id)
+        {
+            var existtingCategory= await dbContext.Categories.FirstOrDefaultAsync(c => c.Id == id);
+            if (existtingCategory != null)
+            {
+                dbContext.Categories.Remove(existtingCategory);
+               await dbContext.SaveChangesAsync();
+                return existtingCategory;
+            }
+            return null;
+        }
+
         public async Task<IEnumerable<Category>> GetAllAsync()
         {
            return await dbContext.Categories.ToListAsync();
